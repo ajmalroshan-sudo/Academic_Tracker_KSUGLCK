@@ -307,7 +307,7 @@
   }
   function pctFor(counts){
     if (counts.total === 0) return 0;
-    const effective = counts.present + counts.late * 2/3;
+    const effective = Math.ceil(counts.present + counts.late * 2/3);
     return (effective / counts.total) * 100;
   }
   function emptyCounts(){ return { present:0, absent:0, late:0, get total(){ return this.present+this.absent+this.late; } }; }
