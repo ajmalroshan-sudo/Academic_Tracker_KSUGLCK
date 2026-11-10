@@ -74,7 +74,7 @@
   .topbar{ background:var(--navy); color:#fff; padding:12px 16px; display:flex; align-items:center; gap:12px; }
   .topbar img{ width:38px; height:38px; border-radius:10px; background:#fff; padding:2px; object-fit:cover; }
   .topbar .titles{ flex:1; min-width:0; }
-  .app-name{ font-weight:700; font-size:14.5px; }
+  .app-name{ font-weight:700; font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .who-line{ font-size:11.5px; color:#9FB6E8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .logout-btn{
     background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.22); color:#fff;
@@ -244,7 +244,7 @@
   <header class="topbar">
     <img data-logo alt="">
     <div class="titles">
-      <div class="app-name">Academic Tracker</div>
+      <div class="app-name" id="appName">Academic Tracker</div>
       <div class="who-line" id="whoLine"></div>
     </div>
     <button class="logout-btn" id="logoutBtn" type="button">Log out</button>
@@ -347,6 +347,7 @@
     S.sem = S.sems.length ? S.sems[S.sems.length - 1] : null;
     deriveSem();
     $('whoLine').textContent = `Roll ${S.batch.roll} \u00B7 ${S.batch.year} ${S.batch.course} ${S.batch.division}`;
+    $('appName').textContent = S.data.name || 'Academic Tracker';
     $('loginScreen').classList.add('hidden');
     $('homeScreen').classList.remove('hidden');
     try { history.replaceState({ view: 'subjects' }, ''); } catch (e) { HIST_OK = false; }
